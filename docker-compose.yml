@@ -1,0 +1,18 @@
+wordpress:
+    image: wordpress
+    links:
+     - mariadb:mysql
+    environment:
+     - WORDPRESS_DB_PASSWORD=admin
+    ports:
+     - 8050
+    volumes:
+     - ./code:/code
+     - /data/html:/var/www/html/wp-content/themes/twentyfifteen/
+mariadb:
+    image: mariadb
+    environment:
+     - MYSQL_ROOT_PASSWORD=admin
+     - MYSQL_DATABASE=hello
+    volumes:
+     - ./database:/var/lib/mysql
